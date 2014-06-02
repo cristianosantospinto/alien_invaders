@@ -139,6 +139,13 @@ var GameBoard = function GameBoard(level_number) {
     this.player = this.addSprite('player', // Sprite
                                  Game.width/2, // X
                                  Game.height - Sprites.map['player'].h - 10); // Y
+      
+ //this.loadLevel = function(level) {
+   // this.objects = [];
+    //this.playerleft = this.addSprite('playerleft', // Sprite
+                                // Game.width/2, // X
+                                 //Game.height - Sprites.map['playerleft'].h - 10); // Y
+        
 
     var flock = this.add(new BirdFlock());   //draws flock
     for(var y=0,rows=level.length;y<rows;y++) {

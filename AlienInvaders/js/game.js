@@ -91,11 +91,26 @@ var Player = function Player(opts) {
  
 }
 
+
 Player.prototype.draw = function(canvas) {
-   Sprites.draw(canvas,'player',this.x,this.y,this.frame); //draws player
-   
+  Sprites.draw(canvas,'player',this.x,this.y,this.frame); //draws player
+
+    //if(Game.keys['left']) {
+    //    Sprites.draw(canvas,'playerleft',this.x,this.y,this.frame);
+        
+        if(Game.keys['right']) {
+        Sprites.draw(canvas,'player',this.x,this.y,this.frame);
+            
+            
+    } else if (Game.keys['left']) { Sprites.draw(canvas,'playerleft',this.x,this.y,this.frame);
+
+    
+    }
 } //create a mirrored sprite, sprites.draw player1 when hit left, player2 when hit right
 
+//Player.prototype.draw = function(canvas) {
+  // Sprites.draw(canvas,'playerflipped',this.x,this.y,this.frame); 
+  // }
 
 Player.prototype.die = function() {
   GameAudio.play('die');
