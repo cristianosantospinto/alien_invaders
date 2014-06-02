@@ -87,10 +87,15 @@ Alien.prototype.fireSometimes = function() {
 var Player = function Player(opts) { 
   this.reloading = 0;
   this.frame = 0;
+   
+ 
 }
+
+
 
 Player.prototype.draw = function(canvas) {
    Sprites.draw(canvas,'player',this.x,this.y,this.frame); //draws player
+   
 }
 
 
@@ -99,15 +104,17 @@ Player.prototype.die = function() {
   Game.callbacks['die']();
 }
 
-Player.prototype.step = function(dt) {
+Player.prototype.step = function(dt) { 
   if(Game.keys['left']) { this.x -= 100 * dt; }
   if(Game.keys['right']) { this.x += 100 * dt; }
   this.frame = (this.frame+1) % 10;
-    
-    //control of left and right it gets its value from level.js
+  setInterval(console.log(this.frame);, 3000);
+
+
   if(this.x < 0) this.x = 0;
-  if(this.x > Game.width-this.w) this.x = Game.width-this.w;
+  if(this.x > Game.width-this.w) this.x = Game.width-this.w; //control of left and right it gets its value from level.js
    
+
 
   this.reloading--;
 
@@ -149,6 +156,8 @@ Missile.prototype.die = function() {
   if(this.board.missiles < 0) this.board.missiles=0;
    this.board.remove(this);
 }
+
+ 
 
 //Var playGame = function() {
    // var board = new GameBoard();
