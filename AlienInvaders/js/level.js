@@ -26,12 +26,13 @@
 //these are the levels
 
   var spriteData = {
-    'alien1': { sx: 0,  sy: 0,  w: 62, h: 48, cls: Alien, frames: 13 },
-    'alien2': { sx: 0,  sy: 48, w: 62, h: 48, cls: Alien, frames: 13 },
-    'alien3': { sx: 0,  sy: 96, w: 62, h: 48, cls: Alien, frames: 13 },
-    'alien4': { sx: 0,  sy: 144, w: 62, h: 48, cls: Alien, frames: 13 },  
+    'bird1': { sx: 0,  sy: 0,  w: 62, h: 48, cls: Bird, frames: 13 },
+    'bird2': { sx: 0,  sy: 48, w: 62, h: 48, cls: Bird, frames: 13 },
+    'bird3': { sx: 0,  sy: 96, w: 62, h: 48, cls: Bird, frames: 13 },
+    'bird4': { sx: 0,  sy: 144, w: 62, h: 48, cls: Bird, frames: 13 },  
     'player': { sx: 0,  sy: 264, w: 48, h: 108, cls: Player, frames: 10 },
-    'missile': { sx: 0,  sy: 192, w: 13,  h: 40, cls: Missile }
+    'worms': { sx: 0,  sy: 192, w: 13,  h: 40, cls: Worms },
+    //'poo': { sx: 0,  sy: 233, w: 13,  h: 29, cls: Poo } 
   }  //'sy' is the position (pixels) on sprite sheet, sy picks up what it looks like
          //w = width of actual image and 'h' is height
 

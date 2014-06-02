@@ -1,4 +1,4 @@
-  var AlienFlock = function AlienFlock() {
+  var BirdFlock = function BirdFlock() {
   this.invulnrable = true;
   this.dx = 10; this.dy = 0;
   this.hit = 1; this.lastHit = 0;
@@ -25,7 +25,7 @@
 
     var max = {}, cnt = 0;
     this.board.iterate(function() {
-      if(this instanceof Alien)  {
+      if(this instanceof Bird)  {
         if(!max[this.x] || this.y > max[this.x]) {
           max[this.x] = this.y; 
         }
@@ -41,24 +41,24 @@
 
 }
 
-var Alien = function Alien(opts) {
+var Bird = function Bird(opts) {
   this.flock = opts['flock'];
   this.frame = 0;
   this.mx = 0;
 }
 
-Alien.prototype.draw = function(canvas) {
+Bird.prototype.draw = function(canvas) {
   Sprites.draw(canvas,this.name,this.x,this.y,this.frame); //draws alien
 }
 
-Alien.prototype.die = function() {
+Bird.prototype.die = function() {
   GameAudio.play('die');
   this.flock.speed += 1;
   this.board.remove(this);
 } //everytime you kill an alien it moves +1 quicker - game gets harder
 
 
-Alien.prototype.step = function(dt) {
+Bird.prototype.step = function(dt) {
   this.mx += dt * this.flock.dx;
   this.y += this.flock.dy;
   if(Math.abs(this.mx) > 10) {
@@ -68,15 +68,15 @@ Alien.prototype.step = function(dt) {
     this.x += this.mx;
     this.mx = 0;
     this.frame = (this.frame+1) % 13; // the 13 suggests how many frames for alien
-    if(this.x > Game.width - Sprites.map.alien1.w * 2) this.flock.hit = -1;
-    if(this.x < Sprites.map.alien1.w) this.flock.hit = 1;
+    if(this.x > Game.width - Sprites.map.bird1.w * 2) this.flock.hit = -1;
+    if(this.x < Sprites.map.bird1.w) this.flock.hit = 1;
   }
   return true;
 }
 
-Alien.prototype.fireSometimes = function() {
+Bird.prototype.fireSometimes = function() {
       if(Math.random()*100 < 10) {
-        this.board.addSprite('missile',this.x + this.w/2 - Sprites.map.missile.w/2,
+        this.board.addSprite('worms',this.x + this.w/2 - Sprites.map.worms.w/2,
                                       this.y + this.h, 
                                      { dy: 100 });
       }
@@ -87,6 +87,7 @@ Alien.prototype.fireSometimes = function() {
 var Player = function Player(opts) { 
   this.reloading = 0;
   this.frame = 0;
+  var runner = setInterval(function(){console.log("runs")}, 1000);
    
  
 }
@@ -108,7 +109,6 @@ Player.prototype.step = function(dt) {
   if(Game.keys['left']) { this.x -= 100 * dt; }
   if(Game.keys['right']) { this.x += 100 * dt; }
   this.frame = (this.frame+1) % 10;
-  setInterval(console.log(this.frame);, 3000);
 
 
   if(this.x < 0) this.x = 0;
@@ -118,29 +118,29 @@ Player.prototype.step = function(dt) {
 
   this.reloading--;
 
-  if(Game.keys['fire'] && this.reloading <= 0 && this.board.missiles < 1) { //amount of bullets before reload <1
+  if(Game.keys['fire'] && this.reloading <= 0 && this.board.worms < 1) { //amount of bullets before reload <1
     GameAudio.play('fire'); //make noise when fire
-    this.board.addSprite('missile',
-                          this.x + this.w/2 - Sprites.map.missile.w/2,
+    this.board.addSprite('worms',
+                          this.x + this.w/2 - Sprites.map.worms.w/2,
                           this.y-this.h,
                           { dy: -100, player: true });
-    this.board.missiles++;
+    this.board.worms++;
     this.reloading = 10;
   }
   return true;
 }
 
 
-var Missile = function Missile(opts) {
+var Worms = function Worms(opts) {
    this.dy = opts.dy;
    this.player = opts.player;
 }
 
-Missile.prototype.draw = function(canvas) {
-   Sprites.draw(canvas,'missile',this.x,this.y); //draws missile
+Worms.prototype.draw = function(canvas) {
+   Sprites.draw(canvas,'worms',this.x,this.y); //draws missile
 }
 
-Missile.prototype.step = function(dt) {
+Worms.prototype.step = function(dt) {
    this.y += this.dy * dt;
 
    var enemy = this.board.collide(this);
@@ -151,9 +151,9 @@ Missile.prototype.step = function(dt) {
    return (this.y < 0 || this.y > Game.height) ? false : true;
 }
 
-Missile.prototype.die = function() {
-  if(this.player) this.board.missiles--;
-  if(this.board.missiles < 0) this.board.missiles=0;
+Worms.prototype.die = function() {
+  if(this.player) this.board.worms--;
+  if(this.board.worms < 0) this.board.worms=0;
    this.board.remove(this);
 }
 
