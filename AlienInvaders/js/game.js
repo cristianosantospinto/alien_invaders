@@ -41,11 +41,11 @@
 
 }
 
-var Bird = function Bird(opts) {
+var Bird = function Bird(opts) {        
   this.flock = opts['flock'];
   this.frame = 0;
   this.mx = 0;
-}
+} 
 
 Bird.prototype.draw = function(canvas) {
   Sprites.draw(canvas,this.name,this.x,this.y,this.frame); //draws alien
@@ -76,7 +76,7 @@ Bird.prototype.step = function(dt) {
 
 Bird.prototype.fireSometimes = function() {
       if(Math.random()*100 < 10) {
-        this.board.addSprite('worms',this.x + this.w/2 - Sprites.map.worms.w/2,
+        this.board.addSprite('poop',this.x + this.w/2 - Sprites.map.poop.w/2,
                                       this.y + this.h, 
                                      { dy: 100 });
       }
@@ -88,16 +88,13 @@ var Player = function Player(opts) {
   this.reloading = 0;
   this.frame = 0;
   this.counter = 0;
-   
  
 }
-
-
 
 Player.prototype.draw = function(canvas) {
    Sprites.draw(canvas,'player',this.x,this.y,this.frame); //draws player
    
-}
+} //create a mirrored sprite, sprites.draw player1 when hit left, player2 when hit right
 
 
 Player.prototype.die = function() {
@@ -112,7 +109,7 @@ Player.prototype.step = function(dt) {
   if(Game.keys['right']) { this.x += 100 * dt; this.counter = (this.counter+1) % 10;
   if (this.counter == 9){this.frame=(this.frame+1)%10}
   console.log(this.frame) }
-
+    
 
   if(this.x < 0) this.x = 0;
   if(this.x > Game.width-this.w) this.x = Game.width-this.w; //control of left and right it gets its value from level.js
@@ -160,7 +157,8 @@ Worms.prototype.die = function() {
    this.board.remove(this);
 }
 
- 
+
+
 
 //Var playGame = function() {
    // var board = new GameBoard();
@@ -170,4 +168,30 @@ Worms.prototype.die = function() {
   //  Game.setBoard(5,new GamePoints(0)));
 //};
 
+var Poop = function Poop(opts) {
+   this.dy = opts.dy;
+   this.player = opts.player;
+   this.frame = 0;
+}
 
+Poop.prototype.draw = function(canvas) {
+   Sprites.draw(canvas,'poop',this.x,this.y,this.frame);
+}
+
+Poop.prototype.step = function(dt) {
+   this.y += this.dy * dt;
+   //this.frame = (this.frame+1) % 2;
+
+   var enemy = this.board.collide(this);
+   if(enemy) { 
+     enemy.die();
+     return false;
+   }
+   return (this.y < 0 || this.y > Game.height) ? false : true;
+}
+
+Poop.prototype.die = function() {
+  if(this.player) this.board.poop--;
+  if(this.board.poop < 0) this.board.poop=0;
+   this.board.remove(this);
+}

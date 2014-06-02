@@ -32,7 +32,7 @@
     'bird4': { sx: 0,  sy: 144, w: 62, h: 48, cls: Bird, frames: 13 },  
     'player': { sx: 0,  sy: 264, w: 48, h: 108, cls: Player, frames: 10 },
     'worms': { sx: 0,  sy: 192, w: 13,  h: 40, cls: Worms },
-    //'poo': { sx: 0,  sy: 233, w: 13,  h: 29, cls: Poo } 
+    'poop': { sx: 0,  sy: 233, w: 13,  h: 29, cls: Poop }
   }  //'sy' is the position (pixels) on sprite sheet, sy picks up what it looks like
          //w = width of actual image and 'h' is height
 
