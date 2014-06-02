@@ -87,7 +87,7 @@ Bird.prototype.fireSometimes = function() {
 var Player = function Player(opts) { 
   this.reloading = 0;
   this.frame = 0;
-  var runner = setInterval(function(){console.log("runs")}, 1000);
+  this.counter = 0;
    
  
 }
@@ -106,9 +106,12 @@ Player.prototype.die = function() {
 }
 
 Player.prototype.step = function(dt) { 
-  if(Game.keys['left']) { this.x -= 100 * dt; }
-  if(Game.keys['right']) { this.x += 100 * dt; }
-  this.frame = (this.frame+1) % 10;
+  if(Game.keys['left']) { this.x -= 100 * dt; this.counter = (this.counter+1) % 10;
+  if (this.counter == 9){this.frame=(this.frame+1)%10}
+  console.log(this.frame) }
+  if(Game.keys['right']) { this.x += 100 * dt; this.counter = (this.counter+1) % 10;
+  if (this.counter == 9){this.frame=(this.frame+1)%10}
+  console.log(this.frame) }
 
 
   if(this.x < 0) this.x = 0;
