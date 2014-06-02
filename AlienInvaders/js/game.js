@@ -86,6 +86,7 @@ Alien.prototype.fireSometimes = function() {
 
 var Player = function Player(opts) { 
   this.reloading = 0;
+  this.frame = 0;
 }
 
 Player.prototype.draw = function(canvas) {
@@ -101,6 +102,7 @@ Player.prototype.die = function() {
 Player.prototype.step = function(dt) {
   if(Game.keys['left']) { this.x -= 100 * dt; }
   if(Game.keys['right']) { this.x += 100 * dt; }
+  this.frame = (this.frame+1) % 10;
     
     //control of left and right it gets its value from level.js
   if(this.x < 0) this.x = 0;

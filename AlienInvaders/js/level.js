@@ -65,7 +65,7 @@
   }
 
   $(function() {
-    GameAudio.load({ 'fire' : 'media/laser.ogg', 'die' : 'media/yummy.ogg' }, 
+    GameAudio.load({ 'fire' : 'media/baz.ogg', 'die' : 'media/yummy.ogg' }, 
                    function() { 
                        Game.initialize("#gameboard", levelData, spriteData,
                                       { "start": startGame,
