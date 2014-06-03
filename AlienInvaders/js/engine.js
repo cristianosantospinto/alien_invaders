@@ -82,10 +82,13 @@ var GameBoard = function GameBoard(level_number) {
   this.level = level_number;
   var board = this;
     
-if (level_number == 1){$('#gameboard').css("background-image", "url(images/sprites.png)")};
+if (level_number == 1){$('#gameboard').css("background-image", "url(images/level1.png)")};
     //if (level_number == 1){javascript goes in here} 
     //== means equals, = is
-if (level_number == 2){$('#gameboard').css("background-image", "url(images/background.png)")};
+if (level_number == 2){$('#gameboard').css("background-image", "url(images/level2.png)")};
+    
+if (level_number == 3){$('#gameboard').css("background-image", "url(images/level3.png)")};
+    
     
 
   this.add =    function(obj) { obj.board=this; this.objects.push(obj); return obj; };

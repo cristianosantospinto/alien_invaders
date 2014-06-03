@@ -103,13 +103,7 @@ Player.prototype.draw = function(canvas) {
     else {
         Sprites.draw(canvas,'player',this.x,this.y,this.frame);
     }
-    //replace.Sprites.draw(canvas,'player',this,x,this.y,this.frame);
-            
-  //} else replace.Sprites.draw(canvas,'player',this.x,this.y,this.frame);
-            
-    //} else if (Game.keys['right']) { Sprites.draw(canvas,'player',this.x,this.y,this.frame);
-
-    
+     
 } 
 
 

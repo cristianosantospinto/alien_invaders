@@ -51,7 +51,8 @@
   //frames - how many different images of the same image (movement of objects)
   
   function startGame() {
-    var screen = new GameScreen("Hungry Birds","(press space to start)",
+      $('#gameboard').css("background-image", "url(images/startscreen.png)");
+    var screen = new GameScreen("","",
                                  function() {
                                      Game.loadBoard(new GameBoard(1));
                                  });
@@ -61,7 +62,7 @@
   }
 
   function endGame() {
-          $('#gameboard').css("background-image", "url(images/background.png)");  //change for end game background img change
+          $('#gameboard').css("background-image", "url(images/endgame.png)");  //change for end game background img change
 
     var screen = new GameScreen("","",
                                  function() {
@@ -72,7 +73,8 @@
 
 
   function winGame() {
-    var screen = new GameScreen("You Win!","(press space to restart)",
+      $('#gameboard').css("background-image", "url(images/wingame.png)");
+    var screen = new GameScreen("","",
                                  function() {
                                      Game.loadBoard(new GameBoard(1));
                                  });
