@@ -53,10 +53,13 @@ var Sprites = new function() {
   }; //map of sprite names to their locations make easier to draw the sprites on the screen
 }
 //every frame has to be same size and on the same line
+
 var GameScreen = function GameScreen(text,text2,callback) {
   this.step = function(dt) {
     if(Game.keys['fire'] && callback) callback();
-  };
+  }; 
+   
+
 
   this.render = function(canvas) {
     canvas.clearRect(0,0,Game.width,Game.height);
@@ -78,6 +81,12 @@ var GameBoard = function GameBoard(level_number) {
   this.worms = 0;
   this.level = level_number;
   var board = this;
+    
+if (level_number == 1){$('#gameboard').css("background-image", "url(images/sprites.png)")};
+    //if (level_number == 1){javascript goes in here} 
+    //== means equals, = is
+if (level_number == 2){$('#gameboard').css("background-image", "url(images/background.png)")};
+    
 
   this.add =    function(obj) { obj.board=this; this.objects.push(obj); return obj; };
   this.remove = function(obj) { this.removed_objs.push(obj); };
@@ -213,7 +222,7 @@ var GameAudio = new function() {
             
           //  canvas.restore();
       //  }
-      //  this.step = function(dt) { } //score sheet top left corner, current score stored on Game object in property named points. For every frame game grabs current score and pads it with leading zeros so that's always pointsLength long, then calls fillText to draw the points 
+      //  this.step = function(dt) { } //score sheet top left corner, current score stored on Fobject in property named points. For every frame game grabs current score and pads it with leading zeros so that's always pointsLength long, then calls fillText to draw the points 
     
 
   this.finished = function(callback) {
