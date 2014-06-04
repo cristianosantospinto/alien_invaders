@@ -26,10 +26,10 @@
           [0,0,1,1,1,0,0,2,2,0,0],
           [0,1,0,0,0,0,2,0,0,2,0],
           [0,1,0,1,1,0,2,0,0,2,0],
-          [0,0,1,1,1,0,0,2,2,0,0],
+          [0,0,1,1,0,0,0,2,0,0,0],
           [0,0,0,0,0,0,0,0,0,0,0],
-          [0,4,0,0,4,0,0,0,0,0,0],
-          [0,0,0,3,0,0,3,0,3,0,0],
+          [0,0,0,0,0,0,0,0,0,0,0],
+          [0,0,0,0,0,0,0,0,0,0,0],
           [0,0,0,0,0,0,0,0,0,0,0],
           [0,0,0,0,0,0,0,0,0,0,0],
           [0,0,0,0,0,0,0,0,0,0,0]]  };
@@ -82,7 +82,7 @@
   }
 
   $(function() {
-    GameAudio.load({ 'fire' : 'media/baz.ogg', 'die' : 'media/yummy.ogg' }, 
+    GameAudio.load({ 'fire' : 'media/baz.ogg','dieplayer' : 'media/dieplayer.ogg', 'die' : 'media/yummy.ogg' }, 
                    function() { 
                        Game.initialize("#gameboard", levelData, spriteData,
                                       { "start": startGame,

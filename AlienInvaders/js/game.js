@@ -109,7 +109,7 @@ Player.prototype.draw = function(canvas) {
 
 
 Player.prototype.die = function() {
-  GameAudio.play('die');
+  GameAudio.play('dieplayer');
   Game.callbacks['die']();
 }
 
@@ -167,8 +167,6 @@ Worms.prototype.die = function() {
   if(this.board.worms < 0) this.board.worms=0;
    this.board.remove(this);
 }
-
-
 
 
 //Var playGame = function() {

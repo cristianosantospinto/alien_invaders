@@ -59,9 +59,7 @@ var GameScreen = function GameScreen(text,text2,callback) {
     if(Game.keys['fire'] && callback) callback();
   }; 
    
-
-
-  this.render = function(canvas) {
+this.render = function(canvas) {
     canvas.clearRect(0,0,Game.width,Game.height);
     canvas.font = "bold 120px Avenir";              //size of main text
     var measure = canvas.measureText(text);  
@@ -89,7 +87,8 @@ if (level_number == 2){$('#gameboard').css("background-image", "url(images/level
     
 if (level_number == 3){$('#gameboard').css("background-image", "url(images/level3.png)")};
     
-    
+    //if on level.. show background image...
+    //$ (sign for javascript)
 
   this.add =    function(obj) { obj.board=this; this.objects.push(obj); return obj; };
   this.remove = function(obj) { this.removed_objs.push(obj); };
@@ -103,8 +102,7 @@ if (level_number == 3){$('#gameboard').css("background-image", "url(images/level
     return sprite;
   };
   
-
-  this.iterate = function(func) {
+ this.iterate = function(func) {
      for(var i=0,len=this.objects.length;i<len;i++) {
        func.call(this.objects[i]);
      }
@@ -251,3 +249,22 @@ var GameAudio = new function() {
     
 };
 
+////
+
+var countx = 0
+Player.prototype.draw = function(canvas) {
+   Sprites.draw(canvas,'player',this.x,this.y);
+    var boo = (countx++) %20;
+    console.log(countx);
+    if (boo == 1){console.log("sdfsdf");}
+    this.fireSometimes();
+   
+}
+
+Player.prototype.fireSometimes = function() {
+      if (Math.random() > 0.5){
+        this.board.addSprite('missile',this.x + this.w/2 - Sprites.map.missile.w/2,
+                                      this.y + this.h-30, 
+                                     { dy: -100 }); //speed of fire
+      }
+}
