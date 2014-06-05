@@ -61,16 +61,14 @@ var GameScreen = function GameScreen(text,text2,callback) {
    
 this.render = function(canvas) {
     canvas.clearRect(0,0,Game.width,Game.height);
-    canvas.font = "bold 120px Avenir";              //size of main text
+    canvas.font = "";              //size of main text
     var measure = canvas.measureText(text);  
-    canvas.fillStyle = "#FFFFFF";
+    canvas.fillStyle = "";
     canvas.fillText(text,Game.width/2 - measure.width/2,Game.height/2);
-    canvas.font = "bold 30px Avenir";
+    canvas.font = "";
     var measure2 = canvas.measureText(text2);
     canvas.fillText(text2,Game.width/2 - measure2.width/2,Game.height/2 + 70); //space height between text
-      //var TitleScreen = function TitleScreen(title,subtitle,callback) {
-        //  this.step = function(dt) {
-          //    if(Game.keys['fire'] && callback) callback();
+     
   };
 };
 
@@ -149,12 +147,6 @@ if (level_number == 3){$('#gameboard').css("background-image", "url(images/level
     this.player = this.addSprite('player', // Sprite
                                  Game.width/2, // X
                                  Game.height - Sprites.map['player'].h - 10); // Y
-      
- //this.loadLevel = function(level) {
-   // this.objects = [];
-    //this.playerleft = this.addSprite('playerleft', // Sprite
-                                // Game.width/2, // X
-                                 //Game.height - Sprites.map['playerleft'].h - 10); // Y
         
 
     var flock = this.add(new BirdFlock());   //draws flock
@@ -223,7 +215,7 @@ var GameAudio = new function() {
             
           //  canvas.restore();
       //  }
-      //  this.step = function(dt) { } //score sheet top left corner, current score stored on Fobject in property named points. For every frame game grabs current score and pads it with leading zeros so that's always pointsLength long, then calls fillText to draw the points 
+      //  this.step = function(dt) { } //score sheet top left corner, current score stored on object in property named points. For every frame game grabs current score and pads it with leading zeros so that's always pointsLength long, then calls fillText to draw the points 
     
 
   this.finished = function(callback) {
